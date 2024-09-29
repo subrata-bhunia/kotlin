@@ -1,0 +1,521 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Litto - Invoice</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ asset('images/favicon.png') }}"
+    />
+    <style type="text/css">
+      /* reset */
+      * {
+        border: 0;
+        box-sizing: content-box;
+        color: inherit;
+        font-family: inherit;
+        font-style: inherit;
+        line-height: inherit;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        vertical-align: top;
+      }
+
+      span {
+        display: inline-block;
+      }
+
+      /* heading */
+      h1 {
+        font: bold 100% sans-serif;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        text-decoration: underline;
+        font-weight: 600;
+      }
+
+      h5 {
+        margin-bottom: 5px;
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      h4 {
+        margin-top: 12px;
+      }
+
+      p {
+        margin-bottom: 5px;
+      }
+
+      /* table */
+      table {
+        font-size: 80%;
+      }
+
+      table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      table > tbody > tr,
+      table > thead > tr,
+      table > tfoot > tr {
+        border: 1px solid #000;
+        border-top: 0px;
+      }
+
+      table > tbody > tr > td,
+      table > thead > tr > th,
+      table > tfoot > tr > td {
+        border-right: 1px solid #000;
+      }
+
+      th,
+      td {
+        padding: 0.5em;
+        position: relative;
+      }
+
+      .product-table > tbody > tr:last-child {
+        border-bottom: 1px solid #000 !important;
+      }
+
+      .product-table > tbody > tr {
+        border-bottom: 0px;
+      }
+
+      /* page */
+      html {
+        font: 16px/1 "Open Sans", sans-serif;
+        overflow: auto;
+        padding: 0.5in;
+      }
+
+      html {
+        background: #999;
+        cursor: default;
+      }
+
+      body {
+        box-sizing: border-box;
+        height: 11.7in;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 0.3in;
+        width: 8.3in;
+        position: relative;
+      }
+
+      body {
+        background: #fff;
+        border-radius: 1px;
+        box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+      }
+
+      .pt-1 {
+        padding-top: 5px;
+      }
+
+      .bt-1 {
+        border-top: 1px solid #000;
+      }
+
+      .bb-1 {
+        border-bottom: 1px solid #000;
+      }
+
+      .br-1 {
+        border-right: 1px solid #000;
+      }
+
+      .bl-1 {
+        border-left: 1px solid #000;
+      }
+
+      .bt-0 {
+        border-top: 0px;
+      }
+
+      .bb-0 {
+        border-bottom: 0px;
+      }
+
+      .br-0 {
+        border-right: 0px;
+      }
+
+      .bl-0 {
+        border-left: 0px;
+      }
+
+      .p-0 {
+        padding: 0;
+      }
+
+      @media print {
+        * {
+          -webkit-print-color-adjust: exact;
+        }
+
+        html {
+          background: none;
+          padding: 0;
+        }
+
+        body {
+          box-shadow: none;
+          margin: 0;
+        }
+
+        span:empty {
+          display: none;
+        }
+      }
+
+      @page {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body id="body">
+    <table class="table">
+      <tbody>
+        <tr>
+          <table>
+            <tbody>
+              <tr class="bb-0 bt-1">
+                <td align="center" width="30%" class="br-0">
+                  <img
+                    src="https://litoo.in/images/logo_brown.png"
+                    height="100"
+                    width="100"
+                  />
+                </td>
+                <td align="center" width="45%" class="br-0">
+                  <h1>NOTEQUAL PRIVATE LIMITED</h1>
+                  <h5>
+                    H.NO - N0021, Debpur, Boulasini, Debra, West Medinipur
+                  </h5>
+                  <h5>West Bengal - 721156</h5>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    "
+                  >
+                    <img
+                      src="https://litoo.in/images/invoice/mail.png"
+                      style="height: auto; width: 16px; padding-right: 5px"
+                    />
+                    <span style="margin-right: 10px">sales@notequal.in</span>
+                    <img
+                      src="https://litoo.in/images/invoice/whatsapp.png"
+                      style="height: auto; width: 16px; padding-right: 5px"
+                    />
+                    <span>+91 9134331144</span>
+                  </div>
+                  <h4>CIN: U27900WB2023PTC262786</h4>
+                  <h4>GSTIN: 19AAICN9426E1Z6</h4>
+                </td>
+                <td align="right" width="25%">
+                  <span><b>Original Copy</b></span>
+                </td>
+              </tr>
+              <tr align="center">
+                <td colspan="3">
+                  <h3>TAX INVOICE</h3>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </tr>
+        <tr>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <p><b>Invoice No. :</b> {{$order->id}}</p>
+                  <p>
+                    <b>Dated :</b> {{date('d-m-Y',
+                    strtotime($order->delivery_date))}}
+                  </p>
+                </td>
+                <td>
+                  <p><b>Place of Supply :</b> West Bengal (19)</p>
+                  <p><b>Reverse Charge :</b> NA</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p><b>Billed to :</b></p>
+                  <p>
+                    {{$buyer->business_name}} - {{$buyer->rm_first_name}}
+                    {{$buyer->rm_last_name}}
+                  </p>
+                  <p>
+                    {{$buyer->address}}, {{$buyer->city}}, {{$buyer->state}} -
+                    {{$buyer->pincode}}
+                  </p>
+                  <p><b>GSTIN / UIN : {{$buyer->gst_no}}</b></p>
+                </td>
+                <td>
+                  <p><b>Shipped to :</b></p>
+                  <p>
+                    {{$buyer->business_name}} - {{$buyer->rm_first_name}}
+                    {{$buyer->rm_last_name}}
+                  </p>
+                  <p>
+                    {{$buyer->address}}, {{$buyer->city}}, {{$buyer->state}} -
+                    {{$buyer->pincode}}
+                  </p>
+                  <p><b>GSTIN / UIN : {{$buyer->gst_no}}</b></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </tr>
+        <tr>
+          <table class="product-table">
+            <thead>
+              <tr>
+                <th>Sl. No.</th>
+                <th>Description of Goods</th>
+                <th>HSN/SAC Code</th>
+                <th>Qty.</th>
+                <th>Unit</th>
+                <th>Price</th>
+                <th>Amount (&#8377;)</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($products as $product)
+              <tr>
+                <td>0{{$loop->iteration}}</td>
+                <td>{{$product->name}}</td>
+                <td>{{$product->hsn_code}}</td>
+                <td>{{$product->quantity}}</td>
+                <td>PCS</td>
+                <td>{{number_format($product->price, 2)}}</td>
+                <td>{{number_format($product->amount, 2)}}</td>
+              </tr>
+              @endforeach @php $haveRow = count($products); $needSpaces = 14 -
+              $haveRow; @endphp @for ($i = 1; $i <= $needSpaces; $i++)
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span style="visibility: hidden">PCS</span></td>
+                <td></td>
+                <td></td>
+              </tr>
+              @endfor
+            </tbody>
+            <tfoot>
+              <tr class="bb-0">
+                <td colspan="6"></td>
+                <td><b>&#8377;{{number_format($totalBeforeTax, 2)}}</b></td>
+              </tr>
+              <tr class="bb-0">
+                <td colspan="3" align="right" class="br-0">Add : CGST</td>
+                <td align="center" class="br-0">@</td>
+                <td colspan="2">{{number_format($order->tax/2)}}%</td>
+                <td>&#8377;{{number_format($totalTax / 2, 2)}}</td>
+              </tr>
+              <tr class="bb-0">
+                <td colspan="3" align="right" class="br-0">Add : SGST</td>
+                <td align="center" class="br-0">@</td>
+                <td colspan="2">{{number_format($order->tax/2)}}%</td>
+                <td>&#8377;{{number_format($totalTax / 2, 2)}}</td>
+              </tr>
+              @php $halfTax = round($totalTax / 2, 2); $actualTotal =
+              round($totalBeforeTax, 2) + round($halfTax * 2, 2); $rounded =
+              0.00; $add = true; $discount = 0.00; if($actualTotal > $total){
+              $rounded = $actualTotal - $total; $add = false; $discount =
+              $order->discount + $rounded; }else{ $rounded = $total -
+              $actualTotal; $add = true; $discount = $order->discount -
+              $rounded; } @endphp @if(Session::get('user_type') == 'Admin')
+              <tr>
+                <td colspan="3" align="right" class="br-0">
+                  Less: Discount (-)
+                </td>
+                <td align="center" class="br-0"></td>
+                <td colspan="2"></td>
+                <td>&#8377;{{number_format($discount, 2)}}</td>
+              </tr>
+              <tr class="bb-0">
+                <td colspan="3" align="right" class="br-0">
+                  <b>Grand Total: </b>
+                </td>
+                <td colspan="3" align="center"><b>{{$totalPcs}} Units</b></td>
+                <td class="bb-1">
+                  <b>&#8377;{{number_format($total - $order->discount, 2)}}</b>
+                </td>
+              </tr>
+              @else
+              <tr>
+                <td colspan="3" align="right" class="br-0">
+                  {{$add ? 'Add' : 'Less'}} : Rounded Off ({{$add ? '+' : '-'}})
+                </td>
+                <td align="center" class="br-0"></td>
+                <td colspan="2"></td>
+                <td>&#8377;{{number_format($rounded, 2)}}</td>
+              </tr>
+              <tr class="bb-0">
+                <td colspan="3" align="right" class="br-0">
+                  <b>Grand Total: </b>
+                </td>
+                <td colspan="3" align="center"><b>{{$totalPcs}} Units</b></td>
+                <td class="bb-1"><b>&#8377;{{number_format($total, 2)}}</b></td>
+              </tr>
+              @endif
+            </tfoot>
+          </table>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <table
+            style="
+              border-spacing: 15px;
+              font-size: 11px;
+              border-left: 1px solid;
+              border-right: 1px solid;
+            "
+          >
+            <tbody>
+              <tr align="center" style="border: 0px">
+                <td width="10%" class="br-0 p-0"><b>Tax Rate</b></td>
+                <td width="10%" class="br-0 p-0"><b>Taxable Amt.</b></td>
+                <td width="10%" class="br-0 p-0"><b>CGST Amt.</b></td>
+                <td width="10%" class="br-0 p-0"><b>SGST Amt.</b></td>
+                <td width="10%" class="br-0 p-0"><b>Total Tax</b></td>
+                <td width="50%"></td>
+              </tr>
+              <tr align="center" style="border: 0px">
+                <td class="br-0 p-0">————</td>
+                <td class="br-0 p-0">——————</td>
+                <td class="br-0 p-0">—————</td>
+                <td class="br-0 p-0">—————</td>
+                <td class="br-0 p-0">—————</td>
+                <td></td>
+              </tr>
+              <tr align="center" style="border: 0px">
+                <td class="br-0 p-0">{{$order->tax}}%</td>
+                <td class="br-0 p-0">
+                  &#8377;{{number_format($totalBeforeTax, 2)}}
+                </td>
+                <td class="br-0 p-0">
+                  &#8377;{{number_format($totalTax / 2, 2)}}
+                </td>
+                <td class="br-0 p-0">
+                  &#8377;{{number_format($totalTax / 2, 2)}}
+                </td>
+                <td class="br-0 p-0">
+                  &#8377;{{number_format(round($totalTax/2, 2)*2, 2)}}
+                </td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </tr>
+        <tr>
+          <table>
+            <tbody>
+              <tr>
+                <td style="padding: 15px 10px 10px 10px">
+                  {{$total_amount_in_word}} Only
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </tr>
+        <tr>
+          <table>
+            <tbody>
+              <tr class="bb-0">
+                @if(Session::get('user_type') == 'Admin')
+                <td width="32%">
+                  <b>Previous Due :</b>
+                  &#8377;{{number_format($order->previous_due, 2)}}
+                </td>
+                <td width="32%">
+                  <b>Payment :</b> &#8377;{{number_format($order->payment, 2)}}
+                </td>
+                <td width="36%">
+                  <b>Total Payble :</b>
+                  &#8377;{{number_format($order->previous_due + $total -
+                  $order->payment - $order->discount, 2)}}
+                </td>
+                @else
+                <td width="32%"><b>Previous Due :</b> &#8377;0.00</td>
+                <td width="32%">
+                  <b>Payment :</b> &#8377;{{number_format($order->payment, 2)}}
+                </td>
+                <td width="36%">
+                  <b>Total Payble :</b> &#8377;{{number_format($total -
+                  $order->payment - $order->discount, 2)}}
+                </td>
+                @endif
+              </tr>
+            </tbody>
+          </table>
+        </tr>
+        <tr>
+          <table>
+            <tbody>
+              <tr style="border-top: 1px solid">
+                <td rowspan="2" width="50%">
+                  <small style="text-decoration: underline"
+                    >Terms & Conditions</small
+                  >
+                  <br />
+                  <span class="pt-1"><b>E.& O.E.</b></span>
+                  <br />
+                  <span class="pt-1"
+                    >1. Goods once sold will not be taken back.</span
+                  >
+                  <span class="pt-1"
+                    >2. Interest @ 18% p.a. will be charged if the payment is
+                    not made with in the stipulated time.</span
+                  >
+                  <span class="pt-1"
+                    >3. Subject to 'Kolkata' Jurisdiction only.</span
+                  >
+                </td>
+                <td>
+                  <span><b>Receiver's Signature :</b></span>
+                  <br /><br /><br />
+                </td>
+              </tr>
+              <tr align="right">
+                <td>
+                  <span>NOTEQUAL PRIVATE LIMITED</span>
+                  <br /><br /><br /><br /><br />
+                  <span><b>Authorised Signatory</b></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      window.print();
+    });
+  </script>
+</html>

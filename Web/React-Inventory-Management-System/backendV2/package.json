@@ -1,0 +1,26 @@
+{
+  "name": "backendv2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "netlify deploy --prod",
+    "start": "netlify dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^7.0.2",
+    "multer": "^1.4.5-lts.1",
+    "netlify-cli": "^17.34.3",
+    "netlify-lambda": "^2.0.16",
+    "nodemon": "^2.0.21",
+    "serverless-http": "^3.2.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

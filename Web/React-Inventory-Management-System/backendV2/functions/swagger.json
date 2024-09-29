@@ -1,0 +1,549 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "BMB API",
+    "version": "1.0.0",
+    "description": "API for BMB (Business Management Backend)"
+  },
+  "servers": [
+    {
+      "url": "/.netlify/functions/index"
+    }
+  ],
+  "paths": {
+    "/api/store/add": {
+      "post": {
+        "summary": "Add a new store",
+        "tags": ["Store"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Store"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/store/get/{userID}": {
+      "get": {
+        "summary": "Get all stores for a user",
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/product/add": {
+      "post": {
+        "summary": "Add a new product",
+        "tags": ["Product"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/product/get/{userId}": {
+      "get": {
+        "summary": "Get all products for a user",
+        "tags": ["Product"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/product/delete/{id}": {
+      "delete": {
+        "summary": "Delete a product",
+        "tags": ["Product"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/product/update": {
+      "put": {
+        "summary": "Update a product",
+        "tags": ["Product"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/product/search": {
+      "get": {
+        "summary": "Search for products",
+        "tags": ["Product"],
+        "parameters": [
+          {
+            "name": "searchTerm",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/purchase/add": {
+      "post": {
+        "summary": "Add a new purchase",
+        "tags": ["Purchase"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Purchase"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/purchase/get/{userID}": {
+      "get": {
+        "summary": "Get all purchases for a user",
+        "tags": ["Purchase"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/purchase/get/{userID}/totalpurchaseamount": {
+      "get": {
+        "summary": "Get total purchase amount for a user",
+        "tags": ["Purchase"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/sales/add": {
+      "post": {
+        "summary": "Add a new sale",
+        "tags": ["Sales"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Sale"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/sales/get/{userID}": {
+      "get": {
+        "summary": "Get all sales for a user",
+        "tags": ["Sales"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/sales/getmonthly": {
+      "get": {
+        "summary": "Get monthly sales",
+        "tags": ["Sales"],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/sales/get/{userID}/totalsaleamount": {
+      "get": {
+        "summary": "Get total sales amount for a user",
+        "tags": ["Sales"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/billing/add": {
+      "post": {
+        "summary": "Add a new billing",
+        "tags": ["Billing"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Billing"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/billing/get/{userID}": {
+      "get": {
+        "summary": "Get all billing data for a user",
+        "tags": ["Billing"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/billing/get/{userID}/totalbillingamount": {
+      "get": {
+        "summary": "Get total billing amount for a user",
+        "tags": ["Billing"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/billing/getmonthly/{userID}": {
+      "get": {
+        "summary": "Get monthly billing for a user",
+        "tags": ["Billing"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/api/login": {
+      "post": {
+        "summary": "User login",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful login"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          }
+        }
+      }
+    },
+    "/api/register": {
+      "post": {
+        "summary": "User registration",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful registration"
+          },
+          "400": {
+            "description": "Registration failed"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Welcome message",
+        "tags": ["General"],
+        "responses": {
+          "200": {
+            "description": "Welcome message"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "firstName": { "type": "string" },
+          "lastName": { "type": "string" },
+          "email": { "type": "string" },
+          "password": { "type": "string" },
+          "phoneNumber": { "type": "string" },
+          "imageUrl": { "type": "string" }
+        }
+      },
+      "Store": {
+        "type": "object",
+        "properties": {
+          "userID": { "type": "string" },
+          "name": { "type": "string" },
+          "category": { "type": "string" },
+          "address": { "type": "string" },
+          "city": { "type": "string" },
+          "image": { "type": "string" }
+        },
+        "required": ["userID", "name", "category", "address", "city", "image"]
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "userID": { "type": "string" },
+          "name": { "type": "string" },
+          "manufacturer": { "type": "string" },
+          "stock": { "type": "number" },
+          "description": { "type": "string" }
+        },
+        "required": ["userID", "name", "manufacturer", "stock"]
+      },
+      "Purchase": {
+        "type": "object",
+        "properties": {
+          "userID": { "type": "string" },
+          "ProductID": { "type": "string" },
+          "QuantityPurchased": { "type": "number" },
+          "PurchaseDate": { "type": "string" },
+          "TotalPurchaseAmount": { "type": "number" }
+        },
+        "required": ["userID", "ProductID", "QuantityPurchased", "PurchaseDate", "TotalPurchaseAmount"]
+      },
+      "Sale": {
+        "type": "object",
+        "properties": {
+          "userID": { "type": "string" },
+          "ProductID": { "type": "string" },
+          "StoreID": { "type": "string" },
+          "StockSold": { "type": "number" },
+          "SaleDate": { "type": "string" },
+          "TotalSaleAmount": { "type": "number" }
+        },
+        "required": ["userID", "ProductID", "StoreID", "StockSold", "SaleDate", "TotalSaleAmount"]
+      },
+      "Billing": {
+        "type": "object",
+        "properties": {
+          "userID": { "type": "string" },
+          "customerName": { "type": "string" },
+          "customerPhone": { "type": "string" },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "product": { "type": "string" },
+                "quantity": { "type": "number" }
+              }
+            }
+          },
+          "date": { "type": "string", "format": "date-time" },
+          "status": { "type": "string", "enum": ["Pending", "Paid"] },
+          "discountPercentage": { "type": "number" },
+          "taxPercentage": { "type": "number" },
+          "totalAmount": { "type": "string" },
+          "priceAfterDiscount": { "type": "string" },
+          "finalPrice": { "type": "string" },
+          "invID": { "type": "string" }
+        },
+        "required": ["userID", "customerName", "customerPhone", "items", "date", "status", "discountPercentage", "taxPercentage", "totalAmount", "priceAfterDiscount", "finalPrice", "invID"]
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ]
+}

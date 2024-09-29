@@ -1,0 +1,73 @@
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { BrowserRouter as Router } from "react-router-dom";
+import MedicalBillingTable from "./Billing";
+import AuthContext from "../AuthContext";
+
+const mockBillingData = [
+  {
+    _id: "1",
+    customerName: "John Doe",
+    customerPhone: "1234567890",
+    items: [
+      { name: "Medicine A", quantity: 2, price: 50 },
+      { name: "Medicine B", quantity: 1, price: 100 },
+    ],
+    totalAmount: 200,
+    status: "Paid",
+    discountPercentage: 10,
+    taxPercentage: 18,
+  },
+  {
+    _id: "2",
+    customerName: "Jane Smith",
+    customerPhone: "0987654321",
+    items: [{ name: "Medicine C", quantity: 3, price: 150 }],
+    totalAmount: 450,
+    status: "Unpaid",
+    discountPercentage: 0,
+    taxPercentage: 18,
+  },
+];
+
+const renderComponent = () => {
+  return render(
+    <AuthContext.Provider value={{ billingData: mockBillingData }}>
+      <Router>
+        <MedicalBillingTable />
+      </Router>
+    </AuthContext.Provider>
+  );
+};
+
+describe("MedicalBillingTable Component", () => {
+  test("renders without crashing", () => {
+    renderComponent();
+    expect(screen.getByText("Bills")).toBeInTheDocument();
+  });
+
+  test("displays billing data in the table", () => {
+    renderComponent();
+    expect(screen.getByText("John Doe")).toBeInTheDocument();
+    expect(screen.getByText("Jane Smith")).toBeInTheDocument();
+  });
+
+  test("filters billing data based on customer name", () => {
+    renderComponent();
+    const searchInput = screen.getByPlaceholderText(
+      "Search here by customer name"
+    );
+
+    // Type 'John' in the search input
+    fireEvent.change(searchInput, { target: { value: "John" } });
+
+    // John Doe should be visible, but Jane Smith should be filtered out
+    expect(screen.getByText("John Doe")).toBeInTheDocument();
+    expect(screen.queryByText("Jane Smith")).not.toBeInTheDocument();
+  });
+
+  test("matches snapshot", () => {
+    const { asFragment } = renderComponent();
+    expect(asFragment()).toMatchSnapshot();
+  });
+});
